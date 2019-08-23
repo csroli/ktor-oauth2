@@ -31,6 +31,7 @@ import io.ktor.http.parseUrlEncodedParameters
 import io.ktor.http.takeFrom
 import io.ktor.server.testing.handleRequest
 import io.ktor.server.testing.withTestApplication
+import io.ktor.util.KtorExperimentalAPI
 import org.json.simple.JSONObject
 import org.json.simple.JSONValue
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -107,6 +108,7 @@ internal class AuthorizationEndpointTest {
      * The authorization server MUST ignore unrecognized request parameters.  Request and response parameters
      * MUST NOT be included more than once.
      */
+    @KtorExperimentalAPI
     @Test
     fun `parameters without value are treated as if they were omitted`() = withTestApplication(buildApplication(server)) {
         val url = URLBuilder().run {

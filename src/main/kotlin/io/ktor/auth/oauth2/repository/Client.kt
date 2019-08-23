@@ -20,6 +20,7 @@ import io.ktor.auth.Credential
 import io.ktor.auth.Principal
 import io.ktor.auth.oauth2.grant.GrantHandler
 import io.ktor.config.ApplicationConfig
+import io.ktor.util.InternalAPI
 import io.ktor.util.decodeBase64
 import java.net.URI
 import java.security.MessageDigest
@@ -116,6 +117,7 @@ class ClientHashedTableRepository(
 /**
  * Parse a map of clients from the application configuration.
  */
+@UseExperimental(InternalAPI::class)
 fun ApplicationConfig.parseClients(name: String = "clients"): Map<String, Pair<ClientIdPrincipal, ByteArray>> =
     configList(name)
         .map {

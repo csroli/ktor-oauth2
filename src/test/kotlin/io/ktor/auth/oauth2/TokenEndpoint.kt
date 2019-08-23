@@ -31,6 +31,7 @@ import io.ktor.http.takeFrom
 import io.ktor.server.testing.handleRequest
 import io.ktor.server.testing.setBody
 import io.ktor.server.testing.withTestApplication
+import io.ktor.util.InternalAPI
 import io.ktor.util.encodeBase64
 import org.json.simple.JSONObject
 import org.json.simple.JSONValue
@@ -48,6 +49,7 @@ import org.junit.jupiter.api.Test
  * The means through which the client obtains the location of the token endpoint are beyond the scope of this
  * specification, but the location is typically provided in the service documentation.
  */
+@InternalAPI
 internal class TokenEndpointTest {
     private lateinit var server: OAuthServer<ClientIdPrincipal, UserIdPrincipal>
     private val client = "test"

@@ -20,6 +20,7 @@ import io.ktor.auth.Principal
 import io.ktor.auth.UserIdPrincipal
 import io.ktor.auth.UserPasswordCredential
 import io.ktor.config.ApplicationConfig
+import io.ktor.util.InternalAPI
 import io.ktor.util.decodeBase64
 import java.security.MessageDigest
 
@@ -57,6 +58,7 @@ class UserHashedTableRepository(
 /**
  * Parse a map of users from the application configuration.
  */
+@InternalAPI
 fun ApplicationConfig.parseUsers(name: String = "users") =
     configList(name)
         .map { it.property("name").getString() to decodeBase64(it.property("hash").getString()) }

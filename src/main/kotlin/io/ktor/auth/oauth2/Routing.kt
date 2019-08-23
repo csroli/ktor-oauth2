@@ -21,17 +21,15 @@ import io.ktor.application.ApplicationCallPipeline
 import io.ktor.application.application
 import io.ktor.application.call
 import io.ktor.application.log
-import io.ktor.auth.HttpAuthHeader
+import io.ktor.http.auth.HttpAuthHeader
 import io.ktor.auth.Principal
 import io.ktor.auth.authentication
 import io.ktor.auth.oauth2.util.state
 import io.ktor.auth.oauth2.util.toJson
-import io.ktor.content.OutgoingContent
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
-import io.ktor.pipeline.ContextDsl
-import io.ktor.pipeline.PipelinePhase
+import io.ktor.http.content.OutgoingContent
 import io.ktor.request.contentType
 import io.ktor.request.receiveParameters
 import io.ktor.response.header
@@ -42,6 +40,8 @@ import io.ktor.routing.RouteSelector
 import io.ktor.routing.RouteSelectorEvaluation
 import io.ktor.routing.RoutingResolveContext
 import io.ktor.routing.post
+import io.ktor.util.pipeline.ContextDsl
+import io.ktor.util.pipeline.PipelinePhase
 
 /**
  * The [PipelinePhase] in which we authorize a client.

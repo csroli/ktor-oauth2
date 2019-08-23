@@ -17,7 +17,6 @@
 package io.ktor.auth.oauth2
 
 import io.ktor.application.ApplicationCall
-import io.ktor.auth.HttpAuthHeader
 import io.ktor.auth.Principal
 import io.ktor.auth.oauth2.grant.Grant
 import io.ktor.auth.oauth2.grant.GrantRequest
@@ -28,6 +27,7 @@ import io.ktor.auth.oauth2.util.scopes
 import io.ktor.auth.oauth2.util.state
 import io.ktor.auth.parseAuthorizationHeader
 import io.ktor.http.Parameters
+import io.ktor.http.auth.HttpAuthHeader
 import io.ktor.request.ApplicationRequest
 import java.util.Base64
 

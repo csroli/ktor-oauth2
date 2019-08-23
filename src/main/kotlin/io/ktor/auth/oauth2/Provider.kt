@@ -21,7 +21,7 @@ import io.ktor.auth.Authentication
 import io.ktor.auth.AuthenticationFailedCause
 import io.ktor.auth.AuthenticationPipeline
 import io.ktor.auth.AuthenticationProvider
-import io.ktor.auth.HttpAuthHeader
+import io.ktor.http.auth.HttpAuthHeader
 import io.ktor.auth.Principal
 import io.ktor.auth.UnauthorizedResponse
 import io.ktor.auth.parseAuthorizationHeader
