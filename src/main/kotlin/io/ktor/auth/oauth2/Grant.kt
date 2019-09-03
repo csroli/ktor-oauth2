@@ -29,7 +29,7 @@ import io.ktor.auth.parseAuthorizationHeader
 import io.ktor.http.Parameters
 import io.ktor.http.auth.HttpAuthHeader
 import io.ktor.request.ApplicationRequest
-import java.util.Base64
+import java.util.*
 
 /**
  * Handle the given [ApplicationCall] as an OAuth 2.0 authorization grant request and return the authorization
@@ -41,8 +41,9 @@ import java.util.Base64
  * @throws OAuthError if the authorization failed.
  */
 suspend fun <C : Principal, U : Principal> ApplicationCall.oauthGrant(
-    server: OAuthServer<C, U>,
-    params: Parameters = Parameters.Empty
+        server: OAuthServer<C, U>,
+        params: Parameters = Parameters.Empty,
+        clientCredential: ClientCredential? = null
 ): Grant<C, U> {
     val grantType = params.grantType ?: throw InvalidRequest("The 'grant_type' field is mandatory.")
     val handler = server.handlers[grantType]
@@ -54,8 +55,9 @@ suspend fun <C : Principal, U : Principal> ApplicationCall.oauthGrant(
     val scopes = params.scopes ?: server.defaultScopes
 
     // Parse the credentials from either the request or from the Http Authentication header.
-    val credentials = request.basicAuthenticationClientCredentials()
-        ?: params.clientCredentials()
+    val credentials = clientCredential
+            ?: request.basicAuthenticationClientCredentials()
+            ?: params.clientCredentials()
 
     val principal = credentials?.let { server.clientRepository.validate(it) }
 
